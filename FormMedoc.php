@@ -23,7 +23,7 @@ $_SESSION['med']=$_POST['listMed'];
 		<h1> Medicaments </h1>Selectionnez une famille de m&eacutedicament : 
 		<select name="listFam" class="titre">
 		<?php 
-		$requette="select * from famille;";
+		$requette="select * from familles;";
 		$resultat=mysql_query($requette);
 		while($ligne=mysql_fetch_array($resultat))
 		{
