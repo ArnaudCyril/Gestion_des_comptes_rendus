@@ -25,7 +25,39 @@ $_SESSION['vis']=$_POST['listVis'];
  <div id="contenu">
       <h2 id="iframe">Bienvenue sur l'intranet GSB</h2>
 	<form name="formVISITEUR" method="post" action="#">
-		<h1> Visiteurs </h1>
+		<h1> Visiteurs </h1>Selectionnez un secteur : 
+		<select name="lstDept" class="titre"><option value="all">Tout secteur</option>
+		<?php 
+		$requette="select * from secteur;";
+		$resultat=mysql_query($requette);
+		while($ligne=mysql_fetch_array($resultat))
+		{
+		$idSect=$ligne['SEC_CODE'];
+		$libSect=$ligne['SEC_LIBELLE'];
+		?><option
+		value="<?php echo $idSect ?>"  
+		<?php
+		if(isset($_SESSION['sector']) )
+		{
+		
+			if($idSect==$_SESSION['sector'])
+			{
+				
+				?> 
+				selected="true"
+				<?php
+			}
+		}
+		
+		?>
+		><?php echo $libSect ?></option>
+		<?php }?>
+		
+		</select>
+		
+		<input type=submit name="action" />
+		</br>
+		et/ou
 		</br>
 		Selectionnez directement un visiteur 
 			<?php
