@@ -20,7 +20,37 @@ $_SESSION['med']=$_POST['listMed'];
  <div id="contenu">
       <h2 id="iframe">Bienvenue sur l'intranet GSB</h2>
 	<form name="formVISITEUR" method="post" action="#">
-		<h1> Medicaments </h1>
+		<h1> Medicaments </h1>Selectionnez une famille de m&eacutedicament : 
+		<select name="listFam" class="titre">
+		<?php 
+		$requette="select * from famille;";
+		$resultat=mysql_query($requette);
+		while($ligne=mysql_fetch_array($resultat))
+		{
+			$idSect=$ligne['FAM_CODE'];
+			$libSect=$ligne['FAM_LIBELLE'];
+			?><option
+			value="<?php echo $idSect ?>"  
+			<?php
+			if(isset($_SESSION['famille']))
+			{
+				if($idSect==$_SESSION['famille'])
+				{
+		
+				?> 
+					selected="true"
+				<?php
+				}
+			}
+			?>
+			><?php echo $libSect ?></option>
+		<?php
+		}?>
+		</select>
+		<input type=submit name="action" />
+		</br>
+		et/ou
+		</br>
 		Selectionnez directement un M&eacutedicament 
 			<?php
 			if(isset($_SESSION['famille']))
